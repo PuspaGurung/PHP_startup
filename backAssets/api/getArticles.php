@@ -19,7 +19,7 @@ if($numRow > 0)
 {
   //Article array
   $articleArray = array();
-  $articleArray['article'] = array();
+  $articleArray['articles'] = array();
 
   while($row = $result->fetch(PDO::FETCH_ASSOC)){
     extract($row);
@@ -43,7 +43,7 @@ if($numRow > 0)
     );
 
     // Push to array article
-    array_push($articleArray['article'], $articleItems);
+    array_push($articleArray['articles'], $articleItems);
   }
 
   //turn to JSON and output
