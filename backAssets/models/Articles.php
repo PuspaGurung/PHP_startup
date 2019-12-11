@@ -46,7 +46,7 @@ $this->article_impressions = htmlspecialchars(strip_tags($this->article_impressi
 $this->article_clicks = htmlspecialchars(strip_tags($this->article_clicks));
 $this->article_ctr = htmlspecialchars(strip_tags($this->article_ctr));
 
-//Bind data
+//Bind Article data
 $stmt->bindParam(':article_title', $this->article_title);
 $stmt->bindParam(':article_published', $this->article_published);
 $stmt->bindParam(':article_site', $this->article_site);
