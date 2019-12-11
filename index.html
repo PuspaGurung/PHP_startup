@@ -1,17 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link
-      href="https://fonts.googleapis.com/css?family=Roboto&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" try="text/css" href="./frontAssets/css/main.css" />
-    <title>Live Article</title>
-  </head>
-  <body>
-    <script src="./frontAssets/js/main.js"></script>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" try="text/css" href="./frontAssets/css/main.css" />
+  <title>Live Article</title>
+</head>
+
+<body>
+  <div class="main">
+    <div class="container">
+      <div id="article-table">
+      </div>
+      <div class="table">
+
+      </div>
+
+
+    </div> <!-- EOF container-->
+    <!-- POP UP BOX :: this will display when user click on [Cteate new] button -->
+    <div id="popup-overlay">
+      <div class="popup-box">
+        <div class="popup-box__header">
+          <h2 class="heading-secondary">New article</h2>
+          <span class="popup-close">X</span>
+        </div>
+        <div class="popup-box__body">
+          <form id="submit-article" role="form" method="post" action="backAssets/api/createArticle.php"
+            onsubmit="return handleCreateArticle(this)">
+            <fieldset>
+              <legend>Fruit juice size</legend>
+              <div class="form-group">
+                <label for="article_title">Title</label>
+                <input type="text" id="article_title" name="article_title" required />
+              </div>
+
+              <div class="form-group">
+                <label for="article_published">Published</label>
+                <input type="date" id="article_published" name="article_published" required />
+              </div>
+
+              <div class="form-group">
+                <label for="article_site">Site</label>
+                <select id="article_site" name="article_site" required>
+                  <option value="" disabled selected hidden>Select site</option>
+                  <option value="ABC Nyheter"> ABC Nyheter </option>
+                  <option value="BBC World News"> BBC World News </option>
+                  <option value="Aftenposten"> Aftenposten </option>
+                  <option value="DinSide"> DinSide </option>
+                  <option value="VG"> VG </option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="article_ad_group">Ad group </label>
+                <select id="article_ad_group" name="article_ad_group" required>
+                  <option value="" disabled selected hidden>Select Ad Group</option>
+                  <option value="Lorem ipsum dolor "> Lorem ipsum dolor </option>
+                  <option value="Proin malesuada"> Proin malesuada </option>
+                  <option value="Donec sed imperdiet"> Donec sed imperdiet </option>
+                  <option value="Nulla at nunc vel nisl "> Nulla at nunc vel nisl </option>
+                </select>
+              </div>
+
+              <div class="form-group form-group--lists">
+                <div class="input-group">
+                  <label for="article_bids">Bids</label>
+                  <input type="number" id="article_bids" name="article_bids" required />
+                </div>
+                <div class="input-group">
+                  <label for="article_spending">Spending</label>
+                  <input type="number" id="article_spending" name="article_spending" required />
+                </div>
+                <div class="input-group">
+                  <label for="article_win_rate">Win rate</label>
+                  <input type="number" id="article_win_rate" name="article_win_rate" required />
+                </div>
+                <div class="input-group">
+                  <label for="article_impressions">Impressions</label>
+                  <input type="number" id="article_impressions" name="article_impressions" required />
+                </div>
+                <div class="input-group">
+                  <label for="article_clicks">Clicks</label>
+                  <input type="number" id="article_clicks" name="article_clicks" required />
+                </div>
+
+                <div class="input-group">
+                  <label for="article_ctr">CTR</label>
+                  <input type="number" id="article_ctr" name="article_ctr" required />
+                </div>
+              </div>
+
+              <div class="form-group form-group--button">
+                <button type="submit" class="form-group__btn-submit btn-primary">
+                  Create article
+                </button>
+                <a class="form-group__btn-cancel">Cancel</a>
+              </div>
+            </fieldset>
+          </form>
+        </div><!-- EOF popup-box__body -->
+      </div>
+      <!--EOF pop-up box-->
+    </div><!-- EOF popup-overlay-->
+  </div>
+  <!-- EOF main -->
+
+  <script src="./frontAssets/js/main.js"></script>
+</body>
+
 </html>
