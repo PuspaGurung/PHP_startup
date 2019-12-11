@@ -1,4 +1,12 @@
 .container {
   width: 90rem;
-  margin: 0 auto;
-}
+  margin: 0 auto; }
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; }
+
+body {
+  font-family: "Roboto", sans-serif;
+  padding: 60px; }
