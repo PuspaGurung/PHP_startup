@@ -131,8 +131,8 @@
 	<section id="popup-overlay">
 		<div class="popup-box">
 			<span class="popup-close link">x</span>
-			<span class="submit-message">
-				<!-- submission success message will go here--></span>
+			<span class="submit-message-box"></span>
+			<!-- submission success message will go here--></span>
 			<form id="submit-article" role="form" method="post" action="backAssets/api/createArticle.php"
 				onsubmit="return handleCreateArticle(this)">
 				<fieldset>
@@ -200,7 +200,8 @@
 						</div>
 						<div class="input-group">
 							<label for="article_win_rate">Win rate</label>
-							<input type="number" id="article_win_rate" name="article_win_rate" required />
+							<input type="number" name="article_win_rate" id="article_win_rate" name="article_win_rate"
+								oninput="validateInputValueInPercentage(this)" required />
 						</div>
 						<div class="input-group">
 							<label for="article_impressions">Impressions</label>
@@ -213,7 +214,8 @@
 
 						<div class="input-group">
 							<label for="article_ctr">CTR</label>
-							<input type="number" id="article_ctr" name="article_ctr" required />
+							<input type="number" id="article_ctr" name="article_ctr" oninput=" validateInputValueInPercentage(this)"
+								required />
 						</div>
 					</div>
 
@@ -233,7 +235,7 @@
 
 	<footer id="footer">
 		<div class="container">
-			<small>&copy; Live-article Footer </small></small>
+			<small>&copy; Live-article</small></small>
 		</div>
 	</footer>
 

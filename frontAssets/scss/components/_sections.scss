@@ -14,7 +14,7 @@
 #main {
 
   //**************************** TABLE ******/
-  //Articles table wrapper 
+  //Articles table wrapper
   #articles-wrapper {
     padding: 5rem 0;
 
@@ -68,7 +68,6 @@
           vertical-align: bottom;
           height: 5rem;
 
-
           span.th-item {
             float: left;
           }
@@ -100,6 +99,7 @@
           padding: 0.5rem;
           margin-left: 10rem;
           font-size: 1.6rem;
+          @include transition-delay-sm;
 
           i.fa {
             color: $color-black--primary;
@@ -125,19 +125,19 @@
 
       //start tbody
       tbody.table-article__body {
-        tr td:nth-child(1) {
+        td:nth-child(1) {
           width: 28rem;
         }
 
-        tr td:nth-child(2) {
+        td:nth-child(2) {
           width: 13rem;
         }
 
-        tr td:nth-child(3) {
+        td:nth-child(3) {
           width: 20rem;
         }
 
-        tr td:nth-child(4) {
+        td:nth-child(4) {
           width: 21rem;
         }
 
@@ -150,8 +150,6 @@
           color: $color-blue;
           @include transition-delay-sm;
         }
-
-
       }
 
       // End of tbody
@@ -179,14 +177,12 @@
       .total-article-number {}
 
       .loaded-article-number {}
-
-
     }
 
     // End of table
   }
 
-  //End of articles-wrapper  
+  //End of articles-wrapper
 }
 
 // End of main
@@ -201,9 +197,8 @@
   top: 0;
   left: 0;
   background: rgba(0, 0, 0, 0.5);
-  // display: none;
-  @include transition-delay-sm;
   top: -150%;
+  @include transition-delay-sm;
 
   .popup-box {
     position: relative;
@@ -235,12 +230,18 @@
     @include transition-delay-sm;
   }
 
-  .submit-message {
+  .submit-message-box {
     position: absolute;
     z-index: 18;
-    top: 1.6rem;
-    left: 17rem;
-    color: $color-red;
+    bottom: 4rem;
+    right: 4rem;
+    text-align: center;
+
+    .submit-message {
+      border: 1px solid $color-green;
+      color: $color-green;
+      padding: 0.5rem 1.5rem;
+    }
   }
 
   #submit-article {
@@ -277,9 +278,8 @@
         font-family: inherit !important;
         line-height: 2.8rem;
 
-        &[type=text] {
+        &[type="text"] {
           width: 100%;
-
         }
       }
 
@@ -316,12 +316,12 @@
       .input-group {
         margin-bottom: 1.5rem;
         display: inline-block;
-        text-align: center;
+        text-align: left;
+        width: 15%;
       }
 
       input {
-        width: 4rem;
-
+        width: 97%;
       }
     }
 
@@ -333,11 +333,9 @@
       cursor: pointer;
       @include transition-delay-sm;
 
-
       &:hover {
         opacity: 0.8;
       }
-
     }
 
     a.form-group__btn-cancel {
@@ -352,7 +350,6 @@
       }
     }
   }
-
 }
 
 //End of  popup-overlay

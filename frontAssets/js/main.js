@@ -40,13 +40,18 @@ let domControl = {
   linkCreateArticle: document.querySelector('.link-create-article '),
   // Popup
   popupOverlay: document.querySelector('#popup-overlay'),
-  closePopup: document.querySelector('.popup-close'),
+  closePopupOverlay: document.querySelector('.popup-close'),
   //Submit form
   submitArticleForm: document.querySelector('#submit-article'),
   // Submit message
-  submitMessage: document.querySelector('.submit-message'),
+  submitMessage: document.querySelector('.submit-message-box'),
   // Cancel submit message
-  clearSubmitForm: document.querySelector('.form-group__btn-cancel')
+  clearSubmitForm: document.querySelector('.form-group__btn-cancel'),
+
+  // Submit form
+
+  inputWinRate: document.getElementById('article_win_rate'),
+  inputCTR: document.getElementById('article_ctr'),
 };
 
 //Get All Articles
@@ -98,7 +103,14 @@ function handleCreateArticle(formData) {
     })
     .then(res => res.json())
     .then(data => {
-      domControl.submitMessage.innerHTML = data.message;
+      // Display success or failure message 
+
+      domControl.submitMessage.innerHTML = `<span class="submit-message">${data.message}</span>`;
+      // Remove message after two second
+      setTimeout(() => {
+        domControl.submitMessage.innerHTML = "";
+      }, 2000);
+
       //Empty the form after submit
       domControl.submitArticleForm.reset();
 
@@ -109,7 +121,7 @@ function handleCreateArticle(formData) {
   return false; //prevent form from posting (element.preventDefault())
 }
 
-// STYLESHEET ******************************************************************/
+// ******************************** HANDLESTYLESHEET **********************************/
 // ColSpan=full (td 100% witdth) for td element in the table
 let tdNode = document.querySelectorAll(["col-span-full"]);
 Array.from(document.querySelectorAll("[col-span-full]")).forEach(td => {
@@ -123,22 +135,56 @@ Array.from(document.querySelectorAll("[col-span-full]")).forEach(td => {
   );
 });
 
-// Close popup box
-domControl.closePopup.addEventListener('click', (e) => {
-  e.preventDefault();
-  domControl.popupOverlay.style.top = '-105%';
-})
-// Display popup box (submit form)
-domControl.linkCreateArticle.addEventListener('click', (e) => {
-  e.preventDefault();
-  let stylePopupOverlay = {
-    top: 0
-  };
-  let addStylePopupOverlay = domControl.popupOverlay.style;
-  for (let style in stylePopupOverlay) {
-    addStylePopupOverlay[style] = stylePopupOverlay[style];
+class HandleStylePopupOverlay {
+  constructor() {
+    this.stylesheet = {
+      show: {
+        top: 0,
+        display: 'block'
+      },
+      hide: {
+        top: '-150%'
+      }
+    };
+    this.applyStylesheet()
   }
-});
+
+  applyStylesheet() {
+    // Show popUp overlay
+    domControl.linkCreateArticle.addEventListener('click', (e) => {
+      e.preventDefault();
+      let addStyle = domControl.popupOverlay.style;
+      for (let style in this.stylesheet.show) {
+        addStyle[style] = this.stylesheet.show[style];
+      }
+    });
+
+    // Hide and Display non popUp overlay
+    domControl.closePopupOverlay.addEventListener('click', (e) => {
+      e.preventDefault();
+      let addStyle = domControl.popupOverlay.style;
+      for (let style in this.stylesheet.hide) {
+        addStyle[style] = this.stylesheet.hide[style];
+      }
+    })
+  }
+}
+new HandleStylePopupOverlay();
+// EOF class HandleStylePopupOverlay
+
+//****************** FORM VALIDATION *************/
+// Validate submit form:: Input value in percentage
+function validateInputValueInPercentage(e) {
+  // if input value is > 100 (Note: percent should be less of equal to 100)
+  if (e.value > 100) {
+    e.value = e.value.slice(0, 2);
+  }
+  // if the input value in negative (Note: percentage should be +ve numer)
+  if (e.value < 0) {
+    e.value = e.value.slice(1)
+  }
+}
+
 // Clear submit form
 domControl.clearSubmitForm.addEventListener('click', (e) => {
   e.preventDefault();
