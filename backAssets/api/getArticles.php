@@ -14,7 +14,7 @@ $result = $article->getAllArticles();
 // Get number of Row
 $numRow = $result->rowCount();
 
-//checking records
+//Check number of record
 if($numRow > 0)
 {
   //Article array
@@ -37,9 +37,7 @@ if($numRow > 0)
 
        'article_impressions' => $article_impressions,
        'article_clicks' => $article_clicks,
-      'article_ctr' => $article_ctr,
-       
-
+      'article_ctr' => $article_ctr
     );
 
     // Push to array article

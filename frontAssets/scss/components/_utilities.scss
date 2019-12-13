@@ -1,5 +1,23 @@
 // Container
 .container {
-  width: 90rem;
+  width: 80vw;
   margin: 0 auto;
+}
+
+// Link
+.move-up {
+  &:hover {
+    margin-top: -0.5rem;
+    @include transition-delay-sm;
+    cursor: pointer;
+  }
+}
+
+.move-right {
+  &:hover {
+    margin-left: 0.5rem;
+    @include transition-delay-sm;
+    cursor: pointer;
+  }
+
 }
