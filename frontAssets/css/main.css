@@ -4,8 +4,11 @@
 1200px > > : large screen width
 */
 .container {
-  width: 80vw;
+  max-width: 130rem;
   margin: 0 auto; }
+  @media (max-width: 49em) {
+    .container {
+      padding: 0 1.5rem; } }
 
 .move-up:hover {
   margin-top: -0.5rem;
@@ -30,15 +33,18 @@
 
 html {
   font-size: 62.5%; }
-  @media (min-width: 75em) {
+  @media (min-width: 80em) {
     html {
       font-size: 62.5%; } }
-  @media (max-width: 75em) {
+  @media (max-width: 80em) {
     html {
       font-size: 56.25%; } }
-  @media (max-width: 56.26em) {
+  @media (max-width: 65em) {
     html {
-      font-size: 50%; } }
+      font-size: 46.88%; } }
+  @media (max-width: 49em) {
+    html {
+      font-size: 43.75%; } }
   @media (max-width: 37.5em) {
     html {
       font-size: 40%; } }
@@ -69,22 +75,25 @@ body {
 
 #main {
   min-height: 90vh; }
+  @media (max-width: 65em) {
+    #main {
+      min-height: auto; } }
   #main #articles-wrapper {
     padding: 5rem 0; }
-    #main #articles-wrapper table.table-article {
+    #main #articles-wrapper table#table-article {
       position: relative;
       z-index: 10;
       width: 100%;
       border-collapse: collapse;
       border: 1px solid #eeeeee; }
-      #main #articles-wrapper table.table-article tr {
+      #main #articles-wrapper table#table-article tr {
         border: 1px solid #eeeeee; }
-      #main #articles-wrapper table.table-article td {
+      #main #articles-wrapper table#table-article td {
         vertical-align: middle;
         text-align: left;
         padding: 0 1rem;
         height: 4.5rem; }
-      #main #articles-wrapper table.table-article caption {
+      #main #articles-wrapper table#table-article caption {
         position: absolute;
         z-index: 12;
         padding: 1rem 0;
@@ -94,33 +103,46 @@ body {
         top: 1.5rem;
         font-weight: bold;
         color: #0f0f0f; }
-      #main #articles-wrapper table.table-article thead.table-article__head th {
+      #main #articles-wrapper table#table-article #table-article__head th {
         padding: 0 0.9rem 1.2rem;
         text-align: left;
         vertical-align: bottom;
         height: 5rem;
         font-weight: normal; }
-        #main #articles-wrapper table.table-article thead.table-article__head th span.th-item {
-          float: left; }
-        #main #articles-wrapper table.table-article thead.table-article__head th span.sort {
+        @media (max-width: 49em) {
+          #main #articles-wrapper table#table-article #table-article__head th {
+            text-align: center; } }
+        #main #articles-wrapper table#table-article #table-article__head th span.th-item {
+          float: left;
+          margin-top: 0.8rem; }
+          @media (max-width: 49em) {
+            #main #articles-wrapper table#table-article #table-article__head th span.th-item {
+              float: none; } }
+        #main #articles-wrapper table#table-article #table-article__head th span.sort {
           float: right;
           display: flex;
           flex-direction: column;
           align-items: center;
-          justify-content: center;
-          padding-top: 1rem; }
-          #main #articles-wrapper table.table-article thead.table-article__head th span.sort .fa {
+          justify-content: center; }
+          @media (max-width: 49em) {
+            #main #articles-wrapper table#table-article #table-article__head th span.sort {
+              float: none; } }
+          #main #articles-wrapper table#table-article #table-article__head th span.sort .fa {
             line-height: 0.2;
             color: #b3b3b3; }
-            #main #articles-wrapper table.table-article thead.table-article__head th span.sort .fa:hover {
+            #main #articles-wrapper table#table-article #table-article__head th span.sort .fa:hover {
               color: #6b6b6b; }
-      #main #articles-wrapper table.table-article thead.table-article__head tr:nth-child(1) {
+          #main #articles-wrapper table#table-article #table-article__head th span.sort .sort__asc {
+            padding: 1.5rem 0.5rem 0; }
+          #main #articles-wrapper table#table-article #table-article__head th span.sort .sort__desc {
+            padding: 0 0.5rem 1.5rem; }
+      #main #articles-wrapper table#table-article #table-article__head tr:nth-child(1) {
         border-bottom: none !important; }
-        #main #articles-wrapper table.table-article thead.table-article__head tr:nth-child(1) th {
+        #main #articles-wrapper table#table-article #table-article__head tr:nth-child(1) th {
           padding-bottom: 0.5rem; }
-      #main #articles-wrapper table.table-article thead.table-article__head tr:nth-child(2) {
+      #main #articles-wrapper table#table-article #table-article__head tr:nth-child(2) {
         border-top: none !important; }
-      #main #articles-wrapper table.table-article thead.table-article__head a.link-create-article {
+      #main #articles-wrapper table#table-article #table-article__head a.link-create-article {
         display: inline-block;
         text-decoration: underline;
         color: #0f0f0f !important;
@@ -133,31 +155,28 @@ body {
         -moz-transition: all 0.3s;
         -ms-transition: all 0.3s;
         -o-transition: all 0.3s; }
-        #main #articles-wrapper table.table-article thead.table-article__head a.link-create-article i.fa {
+        @media (max-width: 49em) {
+          #main #articles-wrapper table#table-article #table-article__head a.link-create-article {
+            margin: 0; } }
+        #main #articles-wrapper table#table-article #table-article__head a.link-create-article i.fa {
           color: #0f0f0f; }
-        #main #articles-wrapper table.table-article thead.table-article__head a.link-create-article span {
+        #main #articles-wrapper table#table-article #table-article__head a.link-create-article span {
           text-decoration: underline;
           transition: all 0.3s;
           -webkit-transition: all 0.3s;
           -moz-transition: all 0.3s;
           -ms-transition: all 0.3s;
           -o-transition: all 0.3s; }
-        #main #articles-wrapper table.table-article thead.table-article__head a.link-create-article:hover {
+        #main #articles-wrapper table#table-article #table-article__head a.link-create-article:hover {
           margin-left: 10.7rem; }
-          #main #articles-wrapper table.table-article thead.table-article__head a.link-create-article:hover span {
+          #main #articles-wrapper table#table-article #table-article__head a.link-create-article:hover span {
             color: #1BA8F1;
             margin-top: -0.3rem; }
-      #main #articles-wrapper table.table-article tbody.table-article__body td:nth-child(1) {
-        width: 28rem; }
-      #main #articles-wrapper table.table-article tbody.table-article__body td:nth-child(2) {
-        width: 13rem; }
-      #main #articles-wrapper table.table-article tbody.table-article__body td:nth-child(3) {
-        width: 20rem; }
-      #main #articles-wrapper table.table-article tbody.table-article__body td:nth-child(4) {
-        width: 21rem; }
-      #main #articles-wrapper table.table-article tbody.table-article__body tr:nth-child(even) {
+      #main #articles-wrapper table#table-article #table-article__body .table-td--sm {
+        text-align: center; }
+      #main #articles-wrapper table#table-article #table-article__body tr:nth-child(even) {
         background-color: #fafafa; }
-      #main #articles-wrapper table.table-article tbody.table-article__body a.link-article {
+      #main #articles-wrapper table#table-article #table-article__body a.link-article {
         text-decoration: underline;
         color: #1BA8F1;
         transition: all 0.3s;
@@ -165,21 +184,33 @@ body {
         -moz-transition: all 0.3s;
         -ms-transition: all 0.3s;
         -o-transition: all 0.3s; }
-      #main #articles-wrapper table.table-article tfoot#table-article__foot td {
+        #main #articles-wrapper table#table-article #table-article__body a.link-article:hover {
+          color: #6b6b6b; }
+      #main #articles-wrapper table#table-article #table-article__foot td {
         height: 7rem;
         vertical-align: middle; }
-      #main #articles-wrapper table.table-article tfoot#table-article__foot .more-article {
+      #main #articles-wrapper table#table-article #table-article__foot .btn-load-more {
         text-decoration: underline;
         color: #1BA8F1;
         margin-left: 1.5rem;
+        border: none;
+        background-color: #ffffff;
+        cursor: pointer;
+        outline: none;
+        font-size: inherit;
         transition: all 0.3s;
         -webkit-transition: all 0.3s;
         -moz-transition: all 0.3s;
         -ms-transition: all 0.3s;
         -o-transition: all 0.3s; }
-        #main #articles-wrapper table.table-article tfoot#table-article__foot .more-article:hover {
+        #main #articles-wrapper table#table-article #table-article__foot .btn-load-more:hover {
           color: #6b6b6b;
           margin-left: 1.7rem; }
+      #main #articles-wrapper table#table-article #table-article__foot .loaded-article-number,
+      #main #articles-wrapper table#table-article #table-article__foot .total-article-number {
+        display: inline-block;
+        margin: 0 1rem;
+        color: #1BA8F1; }
 
 #popup-overlay {
   position: fixed;
@@ -341,3 +372,6 @@ body {
   text-align: center;
   font-size: 1.8rem;
   background-color: #fafafa; }
+  @media (max-width: 65em) {
+    #footer {
+      display: none; } }

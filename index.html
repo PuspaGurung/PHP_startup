@@ -23,11 +23,11 @@
 	<main role="main" id="main">
 		<div class="container">
 			<section id="articles-wrapper">
-				<table tabindex="0" role="table" class="table-article"
+				<table tabindex="0" role="table" id="table-article"
 					summary="This is the table, which contans list of the article with details including article title, article published, article site, article Ad gropu, article bids, article spending, article win rate,  article impressions, article clicks and article CTR. You can also add new article, for that you need to click on 'Create new' link.">
 					<caption>Articles </caption>
 
-					<thead tabindex="0" class="table-article__head">
+					<thead tabindex="0" id="table-article__head">
 						<tr>
 							<th colspan="10">
 								<a href="" role="link" class="link-create-article"><i class="fa fa-plus"></i> <span>Create
@@ -107,15 +107,17 @@
 							</th>
 						</tr>
 					</thead>
-					<tbody tabindex="0" class="table-article__body">
+					<tbody tabindex="0" id="table-article__body">
 						<!-- Table body goes here -->
 					</tbody>
 
 					<tfoot id="table-article__foot">
 						<tr>
 							<td col-span-full>
-								Loaded <span class="loaded-article-number"> 2 </span>of<span class="total-article-number"> 5</span>
-								<button href="" class="link more-article">Load more</button>
+								Loaded <span class="loaded-article-number">
+									<!-- loaded article number --> </span>of<span class="total-article-number">
+									<!-- total length of articles --></span>
+								<button class="link btn-load-more">Load more</button>
 							</td>
 						</tr>
 					</tfoot>

@@ -14,12 +14,16 @@
 #main {
   min-height: 90vh;
 
+  @include respond-mediaQuery(ipad-pro) {
+    min-height: auto;
+  }
+
   //**************************** TABLE ******/
   //Articles table wrapper
   #articles-wrapper {
     padding: 5rem 0;
 
-    table.table-article {
+    table#table-article {
       position: relative;
       z-index: 10;
       width: 100%;
@@ -47,10 +51,12 @@
         top: 1.5rem;
         font-weight: bold;
         color: $color-black--primary;
+
       }
 
       // Start thead
-      thead.table-article__head {
+      //thead
+      #table-article__head {
 
         // th main
         th {
@@ -60,8 +66,19 @@
           height: 5rem;
           font-weight: normal;
 
+          @include respond-mediaQuery(ipad) {
+            text-align: center;
+          }
+
+
           span.th-item {
             float: left;
+            margin-top: 0.8rem;
+
+            @include respond-mediaQuery(ipad) {
+              float: none;
+            }
+
           }
 
           span.sort {
@@ -70,7 +87,11 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding-top: 1rem;
+
+            @include respond-mediaQuery(ipad) {
+              float: none;
+            }
+
 
             .fa {
               line-height: 0.2;
@@ -79,6 +100,14 @@
               &:hover {
                 color: $color-black--secondary;
               }
+            }
+
+            .sort__asc {
+              padding: 1.5rem 0.5rem 0;
+            }
+
+            .sort__desc {
+              padding: 0 0.5rem 1.5rem;
             }
           }
         }
@@ -106,6 +135,10 @@
           font-size: 1.6rem;
           @include transition-delay-sm;
 
+          @include respond-mediaQuery(ipad) {
+            margin: 0;
+          }
+
           i.fa {
             color: $color-black--primary;
           }
@@ -129,21 +162,12 @@
       //End of thead
 
       //start tbody
-      tbody.table-article__body {
-        td:nth-child(1) {
-          width: 28rem;
-        }
+      #table-article__body {
 
-        td:nth-child(2) {
-          width: 13rem;
-        }
 
-        td:nth-child(3) {
-          width: 20rem;
-        }
+        .table-td--sm {
+          text-align: center;
 
-        td:nth-child(4) {
-          width: 21rem;
         }
 
         tr:nth-child(even) {
@@ -154,28 +178,44 @@
           text-decoration: underline;
           color: $color-blue;
           @include transition-delay-sm;
+
+          &:hover {
+            color: $color-black--secondary
+          }
         }
       }
 
       // End of tbody
 
       //start tfoot
-      tfoot#table-article__foot {
+      #table-article__foot {
         td {
           height: 7rem;
           vertical-align: middle;
         }
 
-        .more-article {
+        .btn-load-more {
           text-decoration: underline;
           color: $color-blue;
           margin-left: 1.5rem;
+          border: none;
+          background-color: $color-white--primary;
+          cursor: pointer;
+          outline: none;
+          font-size: inherit;
           @include transition-delay-sm;
 
           &:hover {
             color: $color-black--secondary;
             margin-left: 1.7rem;
           }
+        }
+
+        .loaded-article-number,
+        .total-article-number {
+          display: inline-block;
+          margin: 0 1rem;
+          color: $color-blue;
         }
       }
 
@@ -366,4 +406,8 @@
   text-align: center;
   font-size: 1.8rem;
   background-color: $color-white--secondary;
+
+  @include respond-mediaQuery(ipad-pro) {
+    display: none;
+  }
 }

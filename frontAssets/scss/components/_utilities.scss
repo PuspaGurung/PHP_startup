@@ -1,7 +1,11 @@
 // Container
 .container {
-  width: 80vw;
+  max-width: 130rem;
   margin: 0 auto;
+
+  @include respond-mediaQuery(ipad) {
+    padding: 0 1.5rem;
+  }
 }
 
 // Link

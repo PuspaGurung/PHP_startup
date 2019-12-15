@@ -1,6 +1,6 @@
 window.onload = handleGetArticles();
 
-// Get DOM element
+/* GT DOM ELEMENT : OBJECT */
 let DOMcontrol = {
   articleWrapper: document.querySelector(".articles-wrapper"),
   // Table 
@@ -11,17 +11,15 @@ let DOMcontrol = {
   tableHeaderTh: document.querySelector(".thead-row__th"),
   linkCreateArticleForm: document.querySelector(".link-create-article-form"),
   // Table body
-  tableArticleBody: document.querySelector(".table-article__body"),
+  tableArticleBody: document.querySelector("#table-article__body"),
   // Table foot
-  btnLoadMore: document.querySelector(".more-article"),
+  btnLoadMore: document.querySelector(".btn-load-more"),
   totalArticleNumber: document.querySelector('.total-article-number'),
   totalLoadedArticleNumber: document.querySelector('.loaded-article-number'),
-
   // Sort element
   sort: document.querySelector(".sort"),
   sortAsc: document.querySelector(".sort__asc"),
   sortDesc: document.querySelector(".sort__desc"),
-
   // Link to submit form
   linkCreateArticle: document.querySelector(".link-create-article "),
   // Popup
@@ -33,13 +31,12 @@ let DOMcontrol = {
   submitMessage: document.querySelector(".submit-message-box"),
   // Cancel submit message
   clearSubmitForm: document.querySelector(".form-group__btn-cancel"),
-
   // Submit form
   inputWinRate: document.getElementById("article_win_rate"),
   inputCTR: document.getElementById("article_ctr")
 };
 
-//Get All Articles
+/*** GET ALL ARTICLES : FUNCTION  ***/
 function handleGetArticles() {
   let url = "http://localhost/PHP_liveArticle/backAssets/api/getArticles.php";
   fetch(url)
@@ -54,25 +51,36 @@ function handleGetArticles() {
     .catch(err => console.log(err));
 }
 
+/** HANDLE ARTICLES OUPTUP : CLASS **/
 class HandleArticlesOutput {
   constructor(articles) {
     this.articles = articles;
     // For pagination
     this.totalArticlesLength = this.articles.length;
     this.showDefaultLength = 6;
-    this.showIncrementLengthBy = 4;
+    this.showIncrementLengthBy = 6;
 
+    // For Mobile Device:: User will see only three items at a time in mobile screen 
+    if (screen.width <= 600) {
+      this.showDefaultLength = 3;
+      this.showIncrementLengthBy = 3;
+    }
     this.displayArticle();
     this.controlPagination();
     this.sortArticle();
+
   }
   controlPagination() {
     let currentShow = 0;
     this.show = 0;
-    // Show number of total articles
+
+    // Apply For small screen( width <=600px):: The showStartIndex increment by showDefaultLength each time user click on 'Load more' button
+    this.showStartIndex = 0;
+
+    // Display in browser
     DOMcontrol.totalArticleNumber.innerHTML = this.totalArticlesLength;
-    // Show number of default loaded article number 
     DOMcontrol.totalLoadedArticleNumber.innerHTML = this.showDefaultLength;
+
     DOMcontrol.btnLoadMore.addEventListener("click", e => {
       e.preventDefault();
       this.showMore = currentShow + this.showIncrementLengthBy;
@@ -82,49 +90,37 @@ class HandleArticlesOutput {
 
       // Show number of loaded articles
       DOMcontrol.totalLoadedArticleNumber.innerHTML = this.showDefaultLength + this.show;
-      //Update the :: displayArticle() :: each time user click on 'Load more' button  
+      this.showStartIndex = this.showStartIndex + this.showDefaultLength;
+      //Update the :: displayArticle() :: each time when user click on 'Load more' button  
       this.displayArticle();
     });
   }; // EOF controlPagination
 
   displayArticle() {
+    // Apply condition to start articles(array of article) index (start loop) to display in in small screen device (screen size <=600px) and device with screen width >600px.  
+    let showFrom = (screen.availWidth <= 600 && this.showStartIndex) ? this.showStartIndex : 0;
+
     // Condition: before user click on 'Load more' button and after click it
     let showMore = (this.show) ? this.show : 0;
     let showArticleLength = this.showDefaultLength + showMore;
     let displayArticle = "";
-    for (let i = 0; i < showArticleLength; i++) {
+
+    for (let i = showFrom; i < showArticleLength; i++) {
       displayArticle = displayArticle.concat(`
         <tr class="tbody-row">
-        <td ><a title="Go to Article ${this.articles[i].article_title}" href=#" class="link-article move-right">${this.articles[i].article_title}</a></td>
-        <td >${this.articles[i].article_published}</td>
-        <td >${this.articles[i].article_site}</td>
-        <td ><a title="Go to Ad group ${this.articles[i].article_ad_group}" href="" class="link-article move-right">${this.articles[i].article_ad_group}</a></td>
-        <td class="text-center" >${this.articles[i].article_bids}</td>
-        <td class="text-center" >${this.articles[i].article_spending}</td>
-        <td class="text-center" >${this.articles[i].article_win_rate} %</td>
-        <td class="text-center" >${this.articles[i].article_impressions}</td>
-        <td class="text-center" >${this.articles[i].article_clicks}</td>
-        <td class="text-center">${this.articles[i].article_ctr} %</td>
+        <td class="table-td--lg" ><a title="Go to Article ${this.articles[i].article_title}" href=#" class="link-article">${this.articles[i].article_title}</a></td>
+        <td class="table-td--sm">${this.articles[i].article_published}</td>
+        <td class="table-td--md">${this.articles[i].article_site}</td>
+        <td class="table-td--md"><a title="Go to Ad group ${this.articles[i].article_ad_group}" href="" class="link-article">${this.articles[i].article_ad_group}</a></td>
+        <td class="table-td--sm" >${this.articles[i].article_bids}</td>
+        <td class="table-td--sm" >${this.articles[i].article_spending}</td>
+        <td class="table-td--sm" >${this.articles[i].article_win_rate} %</td>
+        <td class="table-td--sm" >${this.articles[i].article_impressions}</td>
+        <td class="table-td--sm" >${this.articles[i].article_clicks}</td>
+        <td class="table-td--sm">${this.articles[i].article_ctr} %</td>
         </tr>
         `);
     }
-    // :::::: RENDER DATA USING MAP METHOD :::: 
-    // this.articles.map((objArticle, i) => {
-    //   displayArticle = displayArticle.concat(`
-    //     <tr class="tbody-row">
-    //     <td ><a title="Go to Article ${objArticle.article_title}" href=#" class="link-article move-right">${objArticle.article_title}</a></td>
-    //     <td >${objArticle.article_published}</td>
-    //     <td >${objArticle.article_site}</td>
-    //     <td ><a title="Go to Ad group ${objArticle.article_ad_group}" href="" class="link-article move-right">${objArticle.article_ad_group}</a></td>
-    //     <td class="text-center" >${objArticle.article_bids}</td>
-    //     <td class="text-center" >${objArticle.article_spending}</td>
-    //     <td class="text-center" >${objArticle.article_win_rate} %</td>
-    //     <td class="text-center" >${objArticle.article_impressions}</td>
-    //     <td class="text-center" >${objArticle.article_clicks}</td>
-    //     <td class="text-center">${objArticle.article_ctr} %</td>
-    //     </tr>
-    //     `);
-    // });
     DOMcontrol.tableArticleBody.innerHTML = displayArticle;
   }; // EOF displayArticles
 
@@ -156,7 +152,7 @@ class HandleArticlesOutput {
 
 }
 
-//Create Article
+/** CREATE NEW ARTICLES : FUNCTION **/
 function handleCreateArticle(formData) {
   let data = new FormData(formData);
   fetch(formData.action, {
@@ -183,7 +179,7 @@ function handleCreateArticle(formData) {
   return false; //prevent form from posting (element.preventDefault())
 }
 
-// ******************************** HANDLESTYLESHEET **********************************/
+/** HANDLE STYLESHEET : STYLESHEET FOR td WIDTH **/
 // ColSpan=full (td 100% witdth) for td element in the table
 let tdNode = document.querySelectorAll(["col-span-full"]);
 Array.from(document.querySelectorAll("[col-span-full]")).forEach(td => {
@@ -197,6 +193,7 @@ Array.from(document.querySelectorAll("[col-span-full]")).forEach(td => {
   );
 });
 
+/** HANDLE STYLESHEET : CLASS  :: STYLESHEET FOR POPUP BOX -> CREATE NEW ARTICLE FORM **/
 class HandleStylePopupOverlay {
   constructor() {
     this.stylesheet = {
@@ -221,7 +218,7 @@ class HandleStylePopupOverlay {
       }
     });
 
-    // Hide and Display non popUp overlay
+    // Hide popUp overlay
     DOMcontrol.closePopupOverlay.addEventListener("click", e => {
       e.preventDefault();
       let addStyle = DOMcontrol.popupOverlay.style;
@@ -234,7 +231,7 @@ class HandleStylePopupOverlay {
 new HandleStylePopupOverlay();
 // EOF class HandleStylePopupOverlay
 
-//****************** FORM VALIDATION *************/
+/** FORM VALIDATION **/
 // Validate submit form:: Input value in percentage
 function validateInputValueInPercentage(e) {
   // if input value is > 100 (Note: percent should be less or equal to 100)
