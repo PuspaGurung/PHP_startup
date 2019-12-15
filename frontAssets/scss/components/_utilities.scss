@@ -19,5 +19,9 @@
     @include transition-delay-sm;
     cursor: pointer;
   }
+}
 
+// Text align center
+.text-center {
+  text-align: center !important;
 }

@@ -25,6 +25,9 @@
   -o-transition: all 0.3s;
   cursor: pointer; }
 
+.text-center {
+  text-align: center !important; }
+
 html {
   font-size: 62.5%; }
   @media (min-width: 75em) {
@@ -64,116 +67,119 @@ body {
     width: 90vw;
     margin: 0 auto; }
 
-#main #articles-wrapper {
-  padding: 5rem 0; }
-  #main #articles-wrapper table.table-article {
-    position: relative;
-    z-index: 10;
-    width: 100%;
-    border-collapse: collapse;
-    border: 1px solid #eeeeee; }
-    #main #articles-wrapper table.table-article tr {
+#main {
+  min-height: 90vh; }
+  #main #articles-wrapper {
+    padding: 5rem 0; }
+    #main #articles-wrapper table.table-article {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      border-collapse: collapse;
       border: 1px solid #eeeeee; }
-    #main #articles-wrapper table.table-article td {
-      vertical-align: middle;
-      text-align: left;
-      padding: 0 1rem;
-      height: 4.5rem; }
-    #main #articles-wrapper table.table-article caption {
-      position: absolute;
-      z-index: 12;
-      padding: 1rem 0;
-      padding: 0.5rem 1.5rem;
-      background: #faec32;
-      left: -0.5rem;
-      top: 1.5rem;
-      font-weight: bold;
-      color: #0f0f0f; }
-    #main #articles-wrapper table.table-article thead.table-article__head tr:nth-child(1) {
-      border-bottom: none !important; }
-      #main #articles-wrapper table.table-article thead.table-article__head tr:nth-child(1) th {
-        padding-bottom: 0.5rem; }
-    #main #articles-wrapper table.table-article thead.table-article__head tr:nth-child(2) {
-      border-top: none !important; }
-    #main #articles-wrapper table.table-article thead.table-article__head th {
-      padding: 0 0.9rem 1.2rem;
-      text-align: left;
-      vertical-align: bottom;
-      height: 5rem; }
-      #main #articles-wrapper table.table-article thead.table-article__head th span.th-item {
-        float: left; }
-      #main #articles-wrapper table.table-article thead.table-article__head th span.sort {
-        float: right;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        padding-top: 1rem; }
-        #main #articles-wrapper table.table-article thead.table-article__head th span.sort .fa {
-          line-height: 0.2;
-          color: #b3b3b3; }
-          #main #articles-wrapper table.table-article thead.table-article__head th span.sort .fa:hover {
-            color: #6b6b6b; }
-    #main #articles-wrapper table.table-article thead.table-article__head a.link-create-article {
-      display: inline-block;
-      text-decoration: underline;
-      color: #0f0f0f !important;
-      text-decoration: none;
-      padding: 0.5rem;
-      margin-left: 10rem;
-      font-size: 1.6rem;
-      transition: all 0.3s;
-      -webkit-transition: all 0.3s;
-      -moz-transition: all 0.3s;
-      -ms-transition: all 0.3s;
-      -o-transition: all 0.3s; }
-      #main #articles-wrapper table.table-article thead.table-article__head a.link-create-article i.fa {
+      #main #articles-wrapper table.table-article tr {
+        border: 1px solid #eeeeee; }
+      #main #articles-wrapper table.table-article td {
+        vertical-align: middle;
+        text-align: left;
+        padding: 0 1rem;
+        height: 4.5rem; }
+      #main #articles-wrapper table.table-article caption {
+        position: absolute;
+        z-index: 12;
+        padding: 1rem 0;
+        padding: 0.5rem 1.5rem;
+        background: #faec32;
+        left: -0.5rem;
+        top: 1.5rem;
+        font-weight: bold;
         color: #0f0f0f; }
-      #main #articles-wrapper table.table-article thead.table-article__head a.link-create-article span {
+      #main #articles-wrapper table.table-article thead.table-article__head th {
+        padding: 0 0.9rem 1.2rem;
+        text-align: left;
+        vertical-align: bottom;
+        height: 5rem;
+        font-weight: normal; }
+        #main #articles-wrapper table.table-article thead.table-article__head th span.th-item {
+          float: left; }
+        #main #articles-wrapper table.table-article thead.table-article__head th span.sort {
+          float: right;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          padding-top: 1rem; }
+          #main #articles-wrapper table.table-article thead.table-article__head th span.sort .fa {
+            line-height: 0.2;
+            color: #b3b3b3; }
+            #main #articles-wrapper table.table-article thead.table-article__head th span.sort .fa:hover {
+              color: #6b6b6b; }
+      #main #articles-wrapper table.table-article thead.table-article__head tr:nth-child(1) {
+        border-bottom: none !important; }
+        #main #articles-wrapper table.table-article thead.table-article__head tr:nth-child(1) th {
+          padding-bottom: 0.5rem; }
+      #main #articles-wrapper table.table-article thead.table-article__head tr:nth-child(2) {
+        border-top: none !important; }
+      #main #articles-wrapper table.table-article thead.table-article__head a.link-create-article {
+        display: inline-block;
         text-decoration: underline;
+        color: #0f0f0f !important;
+        text-decoration: none;
+        padding: 0.5rem;
+        margin-left: 10rem;
+        font-size: 1.6rem;
         transition: all 0.3s;
         -webkit-transition: all 0.3s;
         -moz-transition: all 0.3s;
         -ms-transition: all 0.3s;
         -o-transition: all 0.3s; }
-      #main #articles-wrapper table.table-article thead.table-article__head a.link-create-article:hover {
-        margin-left: 10.7rem; }
-        #main #articles-wrapper table.table-article thead.table-article__head a.link-create-article:hover span {
-          color: #1BA8F1;
-          margin-top: -0.3rem; }
-    #main #articles-wrapper table.table-article tbody.table-article__body td:nth-child(1) {
-      width: 28rem; }
-    #main #articles-wrapper table.table-article tbody.table-article__body td:nth-child(2) {
-      width: 13rem; }
-    #main #articles-wrapper table.table-article tbody.table-article__body td:nth-child(3) {
-      width: 20rem; }
-    #main #articles-wrapper table.table-article tbody.table-article__body td:nth-child(4) {
-      width: 21rem; }
-    #main #articles-wrapper table.table-article tbody.table-article__body tr:nth-child(even) {
-      background-color: #fafafa; }
-    #main #articles-wrapper table.table-article tbody.table-article__body a.link-article {
-      text-decoration: underline;
-      color: #1BA8F1;
-      transition: all 0.3s;
-      -webkit-transition: all 0.3s;
-      -moz-transition: all 0.3s;
-      -ms-transition: all 0.3s;
-      -o-transition: all 0.3s; }
-    #main #articles-wrapper table.table-article tfoot#table-article__foot td {
-      height: 7rem;
-      vertical-align: middle; }
-    #main #articles-wrapper table.table-article tfoot#table-article__foot .more-article {
-      text-decoration: underline;
-      color: #1BA8F1;
-      margin-left: 1.5rem;
-      transition: all 0.3s;
-      -webkit-transition: all 0.3s;
-      -moz-transition: all 0.3s;
-      -ms-transition: all 0.3s;
-      -o-transition: all 0.3s; }
-      #main #articles-wrapper table.table-article tfoot#table-article__foot .more-article:hover {
-        color: #6b6b6b;
-        margin-left: 1.7rem; }
+        #main #articles-wrapper table.table-article thead.table-article__head a.link-create-article i.fa {
+          color: #0f0f0f; }
+        #main #articles-wrapper table.table-article thead.table-article__head a.link-create-article span {
+          text-decoration: underline;
+          transition: all 0.3s;
+          -webkit-transition: all 0.3s;
+          -moz-transition: all 0.3s;
+          -ms-transition: all 0.3s;
+          -o-transition: all 0.3s; }
+        #main #articles-wrapper table.table-article thead.table-article__head a.link-create-article:hover {
+          margin-left: 10.7rem; }
+          #main #articles-wrapper table.table-article thead.table-article__head a.link-create-article:hover span {
+            color: #1BA8F1;
+            margin-top: -0.3rem; }
+      #main #articles-wrapper table.table-article tbody.table-article__body td:nth-child(1) {
+        width: 28rem; }
+      #main #articles-wrapper table.table-article tbody.table-article__body td:nth-child(2) {
+        width: 13rem; }
+      #main #articles-wrapper table.table-article tbody.table-article__body td:nth-child(3) {
+        width: 20rem; }
+      #main #articles-wrapper table.table-article tbody.table-article__body td:nth-child(4) {
+        width: 21rem; }
+      #main #articles-wrapper table.table-article tbody.table-article__body tr:nth-child(even) {
+        background-color: #fafafa; }
+      #main #articles-wrapper table.table-article tbody.table-article__body a.link-article {
+        text-decoration: underline;
+        color: #1BA8F1;
+        transition: all 0.3s;
+        -webkit-transition: all 0.3s;
+        -moz-transition: all 0.3s;
+        -ms-transition: all 0.3s;
+        -o-transition: all 0.3s; }
+      #main #articles-wrapper table.table-article tfoot#table-article__foot td {
+        height: 7rem;
+        vertical-align: middle; }
+      #main #articles-wrapper table.table-article tfoot#table-article__foot .more-article {
+        text-decoration: underline;
+        color: #1BA8F1;
+        margin-left: 1.5rem;
+        transition: all 0.3s;
+        -webkit-transition: all 0.3s;
+        -moz-transition: all 0.3s;
+        -ms-transition: all 0.3s;
+        -o-transition: all 0.3s; }
+        #main #articles-wrapper table.table-article tfoot#table-article__foot .more-article:hover {
+          color: #6b6b6b;
+          margin-left: 1.7rem; }
 
 #popup-overlay {
   position: fixed;

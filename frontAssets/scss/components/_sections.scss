@@ -12,6 +12,7 @@
 
 // MAIN
 #main {
+  min-height: 90vh;
 
   //**************************** TABLE ******/
   //Articles table wrapper
@@ -50,23 +51,14 @@
 
       // Start thead
       thead.table-article__head {
-        tr:nth-child(1) {
-          border-bottom: none !important;
 
-          th {
-            padding-bottom: 0.5rem;
-          }
-        }
-
-        tr:nth-child(2) {
-          border-top: none !important;
-        }
-
+        // th main
         th {
           padding: 0 0.9rem 1.2rem;
           text-align: left;
           vertical-align: bottom;
           height: 5rem;
+          font-weight: normal;
 
           span.th-item {
             float: left;
@@ -89,6 +81,19 @@
               }
             }
           }
+        }
+
+        // th Child
+        tr:nth-child(1) {
+          border-bottom: none !important;
+
+          th {
+            padding-bottom: 0.5rem;
+          }
+        }
+
+        tr:nth-child(2) {
+          border-top: none !important;
         }
 
         a.link-create-article {
