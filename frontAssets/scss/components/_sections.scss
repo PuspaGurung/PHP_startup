@@ -1,7 +1,7 @@
 //HEADER
 #header {
   border-bottom: 1px solid $color-grey--primary;
-  padding: 5rem 0 2.5rem 0;
+  padding: 4rem 0 2.5rem 0;
   margin-bottom: 4rem;
 
   .header-wrapper {
@@ -19,218 +19,319 @@
   }
 
   //**************************** TABLE ******/
-  //Articles table wrapper
-  #articles-wrapper {
-    padding: 5rem 0;
+  /** TABLE **/
+  table#table-article {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid $color-grey--primary;
+    margin-top: 15rem;
 
-    table#table-article {
-      position: relative;
-      z-index: 10;
-      width: 100%;
-      border-collapse: collapse;
+    @include respond-mediaQuery(phone) {
+      display: flex;
+      flex-direction: row;
+      margin-top: 10rem;
+    }
+
+    tr {
       border: 1px solid $color-grey--primary;
+    }
+
+    td {
+      vertical-align: middle;
+      text-align: left;
+      padding: 0 1rem;
+      height: 4.5rem;
+    }
+
+    caption {
+      position: absolute;
+      z-index: 12;
+      padding: 1rem 0;
+      padding: 0.5rem 1.5rem;
+      background: $color-yellow;
+      left: -0.5rem;
+      top: 1.5rem;
+      font-weight: bold;
+      color: $color-black--primary;
+
+      @include respond-mediaQuery(phone) {
+        top: -8.7rem;
+      }
+
+    }
+
+    /** TABLE HEAD **/
+    #table-article__head {
+      outline: none;
+
+      tr:nth-child(1) {
+        @include respond-mediaQuery(phone) {
+          position: absolute;
+          z-index: 15;
+          top: -4.7rem;
+          width: 100%;
+          border: none;
+        }
+
+        th {
+          border-bottom: 0.5rem;
+
+          @include respond-mediaQuery(phone) {
+            padding: 0;
+            border: none;
+            display: table-row-group;
+
+          }
+
+        }
+      }
+
+      tr:nth-child(2) {
+        border-top: none !important;
+
+        @include respond-mediaQuery(phone) {
+          display: flex;
+          flex-direction: column;
+          border: none;
+          background-color: $color-white--secondary;
+        }
+      }
+
+      // th main
+      th {
+        padding: 0 0.9rem 1.2rem;
+        text-align: left;
+        vertical-align: bottom;
+        height: 5rem;
+        font-weight: normal;
+
+        @include respond-mediaQuery(ipad) {
+          text-align: center;
+
+          @include respond-mediaQuery(phone) {
+            display: flex;
+            justify-content: space-between;
+            vertical-align: middle;
+            text-align: left;
+            width: 13rem;
+            font-weight: bold;
+            height: 5rem;
+            border-bottom: 1px solid $color-grey--primary;
+            padding-bottom: 0;
+            align-items: center;
+          }
+        }
+
+
+        span.th-item {
+          float: left;
+          margin-top: 0.8rem;
+
+          @include respond-mediaQuery(ipad) {
+            float: none;
+          }
+
+          @include respond-mediaQuery(phone) {
+            float: left;
+          }
+
+        }
+
+        span.sort {
+          float: right;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+
+          @include respond-mediaQuery(ipad) {
+            float: none;
+          }
+
+          .fa {
+            line-height: 0.2;
+            color: $color-black--tertiary;
+
+            @include respond-mediaQuery(ipad-pro) {
+              font-size: 1.8rem;
+              line-height: 0.5rem;
+            }
+
+            &:hover {
+              color: $color-black--secondary;
+            }
+          }
+
+          .sort__asc {
+            padding: 1.5rem 0.5rem 0;
+          }
+
+          .sort__desc {
+            padding: 0 0.5rem 1.5rem;
+          }
+        }
+      }
+
+      a.link-create-article {
+        display: inline-block;
+        text-decoration: underline;
+        color: $color-black--primary !important;
+        text-decoration: none;
+        padding: 0.5rem;
+        margin-left: 10rem;
+        font-size: 1.6rem;
+        @include transition-delay-sm;
+
+        @include respond-mediaQuery(ipad) {
+          margin: 0;
+        }
+
+        i.fa {
+          color: $color-black--primary;
+        }
+
+        span {
+          text-decoration: underline;
+          @include transition-delay-sm;
+        }
+
+        &:hover {
+          margin-left: 10.7rem;
+
+          span {
+            color: $color-blue;
+            margin-top: -0.3rem;
+          }
+        }
+      }
+    }
+
+    //End of thead
+
+    /** TABLE BODY **/
+    #table-article__body {
+      outline: none;
+
+      @include respond-mediaQuery(phone) {
+        display: flex;
+        flex-direction: row;
+      }
 
       tr {
-        border: 1px solid $color-grey--primary;
+        @include respond-mediaQuery(phone) {
+          display: flex;
+          flex-direction: column;
+          border: none;
+        }
+      }
+
+      tr:nth-child(even) {
+        background-color: $color-white--secondary;
+
+        @include respond-mediaQuery(phone) {
+          background-color: $color-white--primary;
+        }
       }
 
       td {
-        vertical-align: middle;
-        text-align: left;
-        padding: 0 1rem;
-        height: 4.5rem;
-      }
-
-      caption {
-        position: absolute;
-        z-index: 12;
-        padding: 1rem 0;
-        padding: 0.5rem 1.5rem;
-        background: $color-yellow;
-        left: -0.5rem;
-        top: 1.5rem;
-        font-weight: bold;
-        color: $color-black--primary;
-
-      }
-
-      // Start thead
-      //thead
-      #table-article__head {
-
-        // th main
-        th {
-          padding: 0 0.9rem 1.2rem;
-          text-align: left;
-          vertical-align: bottom;
+        @include respond-mediaQuery(phone) {
           height: 5rem;
-          font-weight: normal;
+          border-bottom: 1px solid $color-grey--primary;
+          display: flex;
+          align-items: center;
+        }
+      }
 
-          @include respond-mediaQuery(ipad) {
-            text-align: center;
-          }
+      td:nth-child(5),
+      td:nth-child(6),
+      td:nth-child(7),
+      td:nth-child(8),
+      td:nth-child(9) {
+        text-align: center;
 
+        @include respond-mediaQuery(phone) {
+          text-align: left;
+        }
+      }
 
-          span.th-item {
-            float: left;
-            margin-top: 0.8rem;
+      a.link-article {
+        text-decoration: underline;
+        color: $color-blue;
+        @include transition-delay-sm;
 
-            @include respond-mediaQuery(ipad) {
-              float: none;
-            }
-
-          }
-
-          span.sort {
-            float: right;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-
-            @include respond-mediaQuery(ipad) {
-              float: none;
-            }
-
-
-            .fa {
-              line-height: 0.2;
-              color: $color-black--tertiary;
-
-              &:hover {
-                color: $color-black--secondary;
-              }
-            }
-
-            .sort__asc {
-              padding: 1.5rem 0.5rem 0;
-            }
-
-            .sort__desc {
-              padding: 0 0.5rem 1.5rem;
-            }
-          }
+        &:hover {
+          color: $color-black--secondary
         }
 
-        // th Child
-        tr:nth-child(1) {
-          border-bottom: none !important;
-
-          th {
-            padding-bottom: 0.5rem;
-          }
-        }
-
-        tr:nth-child(2) {
-          border-top: none !important;
-        }
-
-        a.link-create-article {
-          display: inline-block;
-          text-decoration: underline;
-          color: $color-black--primary !important;
+        @include respond-mediaQuery(phone) {
           text-decoration: none;
-          padding: 0.5rem;
-          margin-left: 10rem;
-          font-size: 1.6rem;
-          @include transition-delay-sm;
-
-          @include respond-mediaQuery(ipad) {
-            margin: 0;
-          }
-
-          i.fa {
-            color: $color-black--primary;
-          }
-
-          span {
-            text-decoration: underline;
-            @include transition-delay-sm;
-          }
-
-          &:hover {
-            margin-left: 10.7rem;
-
-            span {
-              color: $color-blue;
-              margin-top: -0.3rem;
-            }
-          }
         }
       }
-
-      //End of thead
-
-      //start tbody
-      #table-article__body {
-
-
-        .table-td--sm {
-          text-align: center;
-
-        }
-
-        tr:nth-child(even) {
-          background-color: $color-white--secondary;
-        }
-
-        a.link-article {
-          text-decoration: underline;
-          color: $color-blue;
-          @include transition-delay-sm;
-
-          &:hover {
-            color: $color-black--secondary
-          }
-        }
-      }
-
-      // End of tbody
-
-      //start tfoot
-      #table-article__foot {
-        td {
-          height: 7rem;
-          vertical-align: middle;
-        }
-
-        .btn-load-more {
-          text-decoration: underline;
-          color: $color-blue;
-          margin-left: 1.5rem;
-          border: none;
-          background-color: $color-white--primary;
-          cursor: pointer;
-          outline: none;
-          font-size: inherit;
-          @include transition-delay-sm;
-
-          &:hover {
-            color: $color-black--secondary;
-            margin-left: 1.7rem;
-          }
-        }
-
-        .loaded-article-number,
-        .total-article-number {
-          display: inline-block;
-          margin: 0 1rem;
-          color: $color-blue;
-        }
-      }
-
-      .total-article-number {}
-
-      .loaded-article-number {}
     }
 
-    // End of table
+    // End of tbody
+
+    /** TABLE FOOTER **/
+    #table-article__foot {
+      @include respond-mediaQuery(phone) {
+        position: absolute;
+        z-index: 19;
+        top: -4.3rem;
+        right: 0rem;
+      }
+
+      tr {
+        @include respond-mediaQuery(phone) {
+          border: none;
+        }
+      }
+
+      td {
+        height: 7rem;
+        vertical-align: middle;
+
+        @include respond-mediaQuery(phone) {
+          height: auto;
+        }
+      }
+
+      .btn-load-more {
+        text-decoration: underline;
+        color: $color-blue;
+        margin-left: 1.5rem;
+        border: none;
+        background-color: $color-white--primary;
+        cursor: pointer;
+        outline: none;
+        font-size: inherit;
+        @include transition-delay-sm;
+
+        &:hover {
+          color: $color-black--secondary;
+          margin-left: 1.7rem;
+        }
+      }
+
+      .loaded-article-number,
+      .total-article-number {
+        display: inline-block;
+        margin: 0 1rem;
+        color: $color-blue;
+      }
+    }
+
+    .total-article-number {}
+
+    .loaded-article-number {}
   }
 
-  //End of articles-wrapper
+  // End of TABLE 
 }
 
-// End of main
+
+// End of MAIN
 
 //Pou-up
 //********************* popup-box--entry form********
@@ -363,6 +464,15 @@
         display: inline-block;
         text-align: left;
         width: 15%;
+
+        @include respond-mediaQuery(ipad-pro) {
+          width: 30%;
+        }
+
+        @include respond-mediaQuery(phone) {
+          width: 38%;
+        }
+
       }
 
       input {

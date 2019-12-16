@@ -108,16 +108,16 @@ class HandleArticlesOutput {
     for (let i = showFrom; i < showArticleLength; i++) {
       displayArticle = displayArticle.concat(`
         <tr class="tbody-row">
-        <td class="table-td--lg" ><a title="Go to Article ${this.articles[i].article_title}" href=#" class="link-article">${this.articles[i].article_title}</a></td>
-        <td class="table-td--sm">${this.articles[i].article_published}</td>
-        <td class="table-td--md">${this.articles[i].article_site}</td>
-        <td class="table-td--md"><a title="Go to Ad group ${this.articles[i].article_ad_group}" href="" class="link-article">${this.articles[i].article_ad_group}</a></td>
-        <td class="table-td--sm" >${this.articles[i].article_bids}</td>
-        <td class="table-td--sm" >${this.articles[i].article_spending}</td>
-        <td class="table-td--sm" >${this.articles[i].article_win_rate} %</td>
-        <td class="table-td--sm" >${this.articles[i].article_impressions}</td>
-        <td class="table-td--sm" >${this.articles[i].article_clicks}</td>
-        <td class="table-td--sm">${this.articles[i].article_ctr} %</td>
+        <td ><a title="Go to Article ${this.articles[i].article_title}" href=#" class="link-article">${this.articles[i].article_title}</a></td>
+        <td >${this.articles[i].article_published}</td>
+        <td >${this.articles[i].article_site}</td>
+        <td ><a title="Go to Ad group ${this.articles[i].article_ad_group}" href="" class="link-article">${this.articles[i].article_ad_group}</a></td>
+        <td  >${this.articles[i].article_bids}</td>
+        <td  >${this.articles[i].article_spending}</td>
+        <td  >${this.articles[i].article_win_rate} %</td>
+        <td  >${this.articles[i].article_impressions}</td>
+        <td  >${this.articles[i].article_clicks}</td>
+        <td >${this.articles[i].article_ctr} %</td>
         </tr>
         `);
     }
