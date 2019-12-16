@@ -1,4 +1,4 @@
-//HEADER
+/** HEADER **/
 #header {
   border-bottom: 1px solid $color-grey--primary;
   padding: 4rem 0 2.5rem 0;
@@ -10,7 +10,7 @@
   }
 }
 
-// MAIN
+/** MAIN **/
 #main {
   min-height: 90vh;
   padding: 12rem 0 4rem;
@@ -19,7 +19,6 @@
     min-height: auto;
   }
 
-  //**************************** TABLE ******/
   /** TABLE **/
   #table-article {
     position: relative;
@@ -64,7 +63,6 @@
 
     /** TABLE HEAD **/
     #table-article__head {
-      outline: none;
 
       tr:nth-child(1) {
         @include respond-mediaQuery(phone) {
@@ -101,7 +99,7 @@
 
       // th main
       th {
-        padding: 0 0.9rem 1.2rem;
+        padding: 0 0.9rem 0.5rem;
         text-align: left;
         vertical-align: bottom;
         height: 5rem;
@@ -221,7 +219,6 @@
 
     /** TABLE BODY **/
     #table-article__body {
-      outline: none;
       @include transition-delay-sm;
 
       @include respond-mediaQuery(phone) {
@@ -285,6 +282,7 @@
 
     /** TABLE FOOTER **/
     #table-article__foot {
+
       @include respond-mediaQuery(phone) {
         position: absolute;
         z-index: 19;
@@ -331,10 +329,6 @@
         color: $color-blue;
       }
     }
-
-    .total-article-number {}
-
-    .loaded-article-number {}
   }
 
   // End of TABLE 
@@ -343,8 +337,7 @@
 
 // End of MAIN
 
-//Pou-up
-//********************* popup-box--entry form********
+/** POPUP BOX:: ARTICLE ENTRY FORM **/
 #popup-overlay {
   position: fixed;
   z-index: 15;
@@ -397,13 +390,13 @@
   .submit-message-box {
     position: absolute;
     z-index: 18;
-    bottom: 4rem;
-    right: 4rem;
+    bottom: 9rem;
     text-align: center;
+    left: 3%;
 
     .submit-message {
       border: 1px solid $color-green;
-      color: $color-green;
+      color: $color-red;
       padding: 0.5rem 1.5rem;
     }
   }
@@ -501,6 +494,7 @@
     button.form-group__btn-submit {
       background-color: $color-green;
       color: $color-white--primary;
+      outline: none;
       border: none;
       padding: 1rem 1.5rem;
       cursor: pointer;
@@ -527,7 +521,7 @@
 
 //End of  popup-overlay
 
-// Footer start
+/** PAGE FOOTER **/
 #footer {
   padding: 3rem 0;
   border-top: 1px solid $color-grey--primary;
