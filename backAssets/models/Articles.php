@@ -71,8 +71,7 @@ return true;
 public function getAllArticles(){
   //Create Query
   //Get articles by Ascending order in terms of article title
-  $query = 'SELECT article_id, article_title, article_published, article_site, article_ad_group, article_bids, article_spending, article_win_rate, article_impressions, article_clicks, article_ctr
-            FROM ' . $this->table_name . ' ORDER BY article_title ASC';
+  $query = 'SELECT * FROM ' . $this->table_name . ' ORDER BY article_title ASC';
 
 //prepare statement
 $stmt = $this->conn->prepare($query);

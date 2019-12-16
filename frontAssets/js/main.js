@@ -1,9 +1,10 @@
+/** DISPLAY ARTICLES TABLE WHEN WINDOW IS LOAD **/
 window.onload = handleGetArticles();
 
-/* GT DOM ELEMENT : OBJECT */
+/**GET DOM ELEMENT : OBJECT **/
 let DOMcontrol = {
   articleWrapper: document.querySelector(".articles-wrapper"),
-  // Table 
+  // Table
   tableArticle: document.querySelector(".articles-wrapper"),
   // Table head
   tableArticleHeader: document.querySelector(".table-article__head"),
@@ -14,12 +15,12 @@ let DOMcontrol = {
   tableArticleBody: document.querySelector("#table-article__body"),
   // Table foot
   btnLoadMore: document.querySelector(".btn-load-more"),
-  totalArticleNumber: document.querySelector('.total-article-number'),
-  totalLoadedArticleNumber: document.querySelector('.loaded-article-number'),
+  totalArticleNumber: document.querySelector(".total-article-number"),
+  totalLoadedArticleNumber: document.querySelector(".loaded-article-number"),
   // Sort element
   sort: document.querySelector(".sort"),
-  sortAsc: document.querySelector(".sort__asc"),
-  sortDesc: document.querySelector(".sort__desc"),
+  sortAsc: document.querySelectorAll(".sort__asc"),
+  sortDesc: document.querySelectorAll(".sort__desc"),
   // Link to submit form
   linkCreateArticle: document.querySelector(".link-create-article "),
   // Popup
@@ -45,7 +46,7 @@ function handleGetArticles() {
     })
     .then(data => {
       let arrObjArticle = data.articles;
-      // Pass arrObjArticle to HandleArticlesOutput class
+      // Pass arrObjArticle to HandleArticlesOutput Class
       new HandleArticlesOutput(arrObjArticle);
     })
     .catch(err => console.log(err));
@@ -54,21 +55,19 @@ function handleGetArticles() {
 /** HANDLE ARTICLES OUPTUP : CLASS **/
 class HandleArticlesOutput {
   constructor(articles) {
-    this.articles = articles;
+    this.articlesArray = articles;
     // For pagination
-    this.totalArticlesLength = this.articles.length;
     this.showDefaultLength = 6;
     this.showIncrementLengthBy = 6;
 
-    // For Mobile Device:: User will see only three items at a time in mobile screen 
+    // For Mobile Device:: User will see only three items at a time in mobile screen
     if (screen.width <= 600) {
-      this.showDefaultLength = 3;
-      this.showIncrementLengthBy = 3;
+      this.showDefaultLength = 2;
+      this.showIncrementLengthBy = 2;
     }
-    this.displayArticle();
+    this.displayArticles();
     this.controlPagination();
-    this.sortArticle();
-
+    this.sortArticles();
   }
   controlPagination() {
     let currentShow = 0;
@@ -78,87 +77,138 @@ class HandleArticlesOutput {
     this.showStartIndex = 0;
 
     // Display in browser
-    DOMcontrol.totalArticleNumber.innerHTML = this.totalArticlesLength;
-    DOMcontrol.totalLoadedArticleNumber.innerHTML = this.showDefaultLength;
+    DOMcontrol.totalArticleNumber.innerHTML = this.articlesArray.length;
+    DOMcontrol.totalLoadedArticleNumber.innerHTML =
+      this.articlesArray.length >= this.showDefaultLength
+        ? this.showDefaultLength
+        : this.articlesArray.length;
 
     DOMcontrol.btnLoadMore.addEventListener("click", e => {
       e.preventDefault();
       this.showMore = currentShow + this.showIncrementLengthBy;
       currentShow = currentShow + this.showIncrementLengthBy;
-      //Control increment length if increment length greater then total length of articles 
-      this.show = (this.showMore + this.showDefaultLength > this.articles.length) ? this.articles.length - this.showDefaultLength : this.showMore;
+      //Control increment length if increment length greater then total length of articles
+      this.show =
+        this.showMore + this.showDefaultLength > this.articlesArray.length
+          ? this.articlesArray.length - this.showDefaultLength
+          : this.showMore;
 
       // Show number of loaded articles
-      DOMcontrol.totalLoadedArticleNumber.innerHTML = this.showDefaultLength + this.show;
+      DOMcontrol.totalLoadedArticleNumber.innerHTML =
+        this.showDefaultLength + this.show;
       this.showStartIndex = this.showStartIndex + this.showDefaultLength;
-      //Update the :: displayArticle() :: each time when user click on 'Load more' button  
-      this.displayArticle();
+      //Update the :: displayArticles() :: each time when user click on 'Load more' button
+      this.displayArticles();
     });
-  }; // EOF controlPagination
+  } // EOF controlPagination
 
-  displayArticle() {
-    // Apply condition to start articles(array of article) index (start loop) to display in in small screen device (screen size <=600px) and device with screen width >600px.  
-    let showFrom = (screen.availWidth <= 600 && this.showStartIndex) ? this.showStartIndex : 0;
+  displayArticles() {
+    // Apply condition to start articles index (start loop) to display in in small screen device (screen size <=600px) and device with screen width >600px.
+    let showFrom =
+      screen.width <= 600 && this.showStartIndex ? this.showStartIndex : 0;
 
-    // Condition: before user click on 'Load more' button and after click it
-    let showMore = (this.show) ? this.show : 0;
-    let showArticleLength = this.showDefaultLength + showMore;
+    // Condition: before and after click on 'Load more' button
+    let showMore = this.show ? this.show : 0;
+    let showArticleLength =
+      this.articlesArray.length >= this.showDefaultLength
+        ? this.showDefaultLength + showMore
+        : this.articlesArray.length;
     let displayArticle = "";
 
     for (let i = showFrom; i < showArticleLength; i++) {
       displayArticle = displayArticle.concat(`
-        <tr class="tbody-row">
-        <td ><a title="Go to Article ${this.articles[i].article_title}" href=#" class="link-article">${this.articles[i].article_title}</a></td>
-        <td >${this.articles[i].article_published}</td>
-        <td >${this.articles[i].article_site}</td>
-        <td ><a title="Go to Ad group ${this.articles[i].article_ad_group}" href="" class="link-article">${this.articles[i].article_ad_group}</a></td>
-        <td  >${this.articles[i].article_bids}</td>
-        <td  >${this.articles[i].article_spending}</td>
-        <td  >${this.articles[i].article_win_rate} %</td>
-        <td  >${this.articles[i].article_impressions}</td>
-        <td  >${this.articles[i].article_clicks}</td>
-        <td >${this.articles[i].article_ctr} %</td>
+        <tr class="tbody__row">
+        <td ><a title="Go to Article ${this.articlesArray[i].article_title}" href=#" class="link-article">${this.articlesArray[i].article_title}</a></td>
+        <td >${this.articlesArray[i].article_published}</td>
+        <td >${this.articlesArray[i].article_site}</td>
+        <td ><a title="Go to Ad group ${this.articlesArray[i].article_ad_group}" href="" class="link-article">${this.articlesArray[i].article_ad_group}</a></td>
+        <td  >${this.articlesArray[i].article_bids}</td>
+        <td  >${this.articlesArray[i].article_spending}</td>
+        <td  >${this.articlesArray[i].article_win_rate} %</td>
+        <td  >${this.articlesArray[i].article_impressions}</td>
+        <td  >${this.articlesArray[i].article_clicks}</td>
+        <td >${this.articlesArray[i].article_ctr} %</td>
         </tr>
         `);
     }
     DOMcontrol.tableArticleBody.innerHTML = displayArticle;
-  }; // EOF displayArticles
+  } // EOF displayArticles
 
-  sortArticle() {
-    let sortAscItems = document.querySelectorAll(".sort__asc");
-    for (let i = 0; i < sortAscItems.length; i++) {
-      sortAscItems[i].addEventListener("click", e => {
+  sortArticles() {
+    /*NOTE: By default the article title is shown in ascending order with the help of SQL query
+
+    /**SORT ASCENDING ORDER**/
+    let getSortByAscElements = DOMcontrol.sortAsc;
+    for (let i = 0; i < getSortByAscElements.length; i++) {
+      getSortByAscElements[i].addEventListener("click", e => {
         let sortBy = e.target.getAttribute("name");
-        console.log(sortBy);
-        let array = sortArt(this.articles, sortBy);
-        this.displayArticle();
+        sortAscending(this.articlesArray, sortBy);
+        this.displayArticles();
+
+        //Add active class on clicked sort element
+        let active = document.querySelectorAll(".active");
+        if (active.length > 0) {
+          active[0].className = active[0].className.replace("active", "");
+        }
+        getSortByAscElements[i].classList.add("active");
       });
     }
 
-    function sortArt(array, sortBy) {
-      array.sort(function (a, b) {
-        let x = a[sortBy];
-        ///a[sortBy] > b[sortBy] ? 1 : -1;
-        if (a[sortBy] > b[sortBy]) {
-          return 1;
-        } else {
-          return -1;
+    function sortAscending(array, sortBy) {
+      array.sort(function(a, b) {
+        //If number
+        if (Math.floor(a[sortBy] % 1) == 0 && Math.floor(b[sortBy] % 1 == 0)) {
+          return a[sortBy] - b[sortBy];
+        }
+        // If string
+        else {
+          return a[sortBy] > b[sortBy] ? 1 : -1;
         }
       });
       return array;
     }
 
-  }
+    /**SORT DECENDING ORDER**/
+    let getSortByDescElements = DOMcontrol.sortDesc;
+    for (let i = 0; i < getSortByDescElements.length; i++) {
+      getSortByDescElements[i].addEventListener("click", e => {
+        let sortBy = e.target.getAttribute("name");
 
-}
+        sortDescending(this.articlesArray, sortBy);
+        this.displayArticles();
+
+        //Add active class on clicked sort icon (element)
+        let active = document.querySelectorAll(".active");
+        if (active.length > 0) {
+          active[0].className = active[0].className.replace("active", "");
+        }
+        getSortByDescElements[i].classList.add("active");
+      });
+    }
+
+    function sortDescending(array, sortBy) {
+      array.sort(function(a, b) {
+        //If number
+        if (Math.floor(a[sortBy] % 1) == 0 && Math.floor(b[sortBy] % 1 == 0)) {
+          return b[sortBy] - a[sortBy];
+        }
+        // If string
+        else {
+          return a[sortBy] < b[sortBy] ? 1 : -1;
+        }
+      });
+      return array;
+    }
+  }
+} // EOF sortArticles
 
 /** CREATE NEW ARTICLES : FUNCTION **/
 function handleCreateArticle(formData) {
   let data = new FormData(formData);
   fetch(formData.action, {
-      method: formData.method,
-      body: data
-    })
+    method: formData.method,
+    body: data
+  })
     .then(res => res.json())
     .then(data => {
       // Display success or failure message

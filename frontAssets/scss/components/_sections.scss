@@ -13,6 +13,7 @@
 // MAIN
 #main {
   min-height: 90vh;
+  padding: 12rem 0 4rem;
 
   @include respond-mediaQuery(ipad-pro) {
     min-height: auto;
@@ -20,13 +21,12 @@
 
   //**************************** TABLE ******/
   /** TABLE **/
-  table#table-article {
+  #table-article {
     position: relative;
     z-index: 10;
     width: 100%;
     border-collapse: collapse;
     border: 1px solid $color-grey--primary;
-    margin-top: 15rem;
 
     @include respond-mediaQuery(phone) {
       display: flex;
@@ -36,6 +36,7 @@
 
     tr {
       border: 1px solid $color-grey--primary;
+      border-bottom: none;
     }
 
     td {
@@ -59,7 +60,6 @@
       @include respond-mediaQuery(phone) {
         top: -8.7rem;
       }
-
     }
 
     /** TABLE HEAD **/
@@ -107,7 +107,7 @@
         height: 5rem;
         font-weight: normal;
 
-        @include respond-mediaQuery(ipad) {
+        @include respond-mediaQuery(ipad-pro) {
           text-align: center;
 
           @include respond-mediaQuery(phone) {
@@ -129,7 +129,7 @@
           float: left;
           margin-top: 0.8rem;
 
-          @include respond-mediaQuery(ipad) {
+          @include respond-mediaQuery(ipad-pro) {
             float: none;
           }
 
@@ -146,7 +146,7 @@
           align-items: center;
           justify-content: center;
 
-          @include respond-mediaQuery(ipad) {
+          @include respond-mediaQuery(ipad-pro) {
             float: none;
           }
 
@@ -160,19 +160,28 @@
             }
 
             &:hover {
-              color: $color-black--secondary;
+              color: $color-black--primary;
             }
           }
 
+          .active {
+            color: $color-black--primary !important;
+            cursor: not-allowed;
+            pointer-events: none;
+          }
+
           .sort__asc {
-            padding: 1.5rem 0.5rem 0;
+            padding: 0 0.5rem 1.5rem;
+
           }
 
           .sort__desc {
-            padding: 0 0.5rem 1.5rem;
+            padding: 1.5rem 0.5rem 0;
+
           }
         }
       }
+
 
       a.link-create-article {
         display: inline-block;
@@ -184,7 +193,7 @@
         font-size: 1.6rem;
         @include transition-delay-sm;
 
-        @include respond-mediaQuery(ipad) {
+        @include respond-mediaQuery(ipad-pro) {
           margin: 0;
         }
 
@@ -213,6 +222,7 @@
     /** TABLE BODY **/
     #table-article__body {
       outline: none;
+      @include transition-delay-sm;
 
       @include respond-mediaQuery(phone) {
         display: flex;
@@ -357,6 +367,14 @@
     @include transform-xy-minus50percent;
     @include border-radious-sm;
     @include box-shadow-sm;
+
+    @include respond-mediaQuery(ipad-pro) {
+      width: 53%;
+    }
+
+    @include respond-mediaQuery(phone) {
+      width: 85%;
+    }
   }
 
   span.popup-close {
