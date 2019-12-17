@@ -39,6 +39,7 @@ let DOMcontrol = {
 
 /*** GET ALL ARTICLES : FUNCTION  ***/
 function handleGetArticles() {
+  //URL For Window
   let url = "http://localhost/PHP_liveArticle/backAssets/api/getArticles.php";
   fetch(url)
     .then(res => {
@@ -52,7 +53,7 @@ function handleGetArticles() {
     .catch(err => console.log(err));
 }
 
-/** HANDLE ARTICLES OUPTUP : CLASS **/
+/** HANDLE ARTICLES OUTPUT : CLASS **/
 class HandleArticlesOutput {
   constructor(articles) {
     this.articlesArray = articles;
